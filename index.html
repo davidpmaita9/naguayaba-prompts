@@ -1,22 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Ná Guayaba Creator IA</title>
-  <link rel="stylesheet" href="estilo.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ná Guayaba Creator IA</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+body{background:#07070a;color:white}
+.container{width:94%;max-width:1100px;margin:auto}
+header{background:#0c0c12;border-bottom:1px solid #222;padding:15px;position:sticky;top:0;z-index:10}
+.logo{font-size:22px;font-weight:bold;color:#ff2b62}
+.hero{padding:35px 0}
+h1{font-size:38px;color:#fff;margin:10px 0}
+p{color:#aaa;line-height:1.5}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;margin:20px 0}
+.card,.panel{background:#111119;border:1px solid #222;border-radius:18px;padding:18px;margin-bottom:18px}
+.card{cursor:pointer}
+.card:hover{border-color:#ff2b62}
+button{background:#ff2b62;color:white;border:none;border-radius:20px;padding:11px 15px;font-weight:bold;margin:6px 4px;cursor:pointer}
+button.dark{background:#222}
+input,select,textarea{width:100%;background:#07070a;color:white;border:1px solid #333;border-radius:12px;padding:12px;margin:8px 0}
+textarea{min-height:140px}
+.module{display:none}
+.module.active{display:block}
+.out{background:#050505;border:1px solid #333;border-radius:14px;padding:15px;white-space:pre-wrap;min-height:160px;margin-top:12px}
+.product,.avatar{border:1px solid #333;border-radius:15px;padding:12px;margin:10px 0;background:#0c0c12}
+.small{font-size:13px;color:#bbb}
+.soon{text-align:center;padding:40px;border:1px dashed #444;border-radius:18px}
+</style>
 </head>
 
-<body style="background:#0b0b0b; color:white; font-family:Arial; padding:20px;">
+<body>
 
-<h1>🔥 NÁ GUAYABA CREATOR IA</h1>
+<header>
+  <div class="container">
+    <div class="logo">🔥 Ná Guayaba Creator IA</div>
+  </div>
+</header>
 
-<p>Plataforma oficial TikTok Shop Brasil</p>
+<div class="container">
 
-<button onclick="alert('Funciona correctamente 🚀')">
-Probar sistema
-</button>
+<section class="hero">
+  <p>⚡ Plataforma oficial para TikTok Shop Brasil + Flow VEO 3</p>
+  <h1>Crie produtos, imagens, roteiros e prompts que vendem</h1>
+  <p>Ferramenta pessoal editável para criar conteúdo realista, seguro e pronto para vídeos de venda.</p>
+</section>
 
-<script src="script.js"></script>
+<section class="grid">
+  <div class="card" onclick="openModule('radar')">📈 <h3>Radar de Produtos</h3><p>Análise tipo Kalodata.</p></div>
+  <div class="card" onclick="openModule('images')">🖼️ <h3>Laboratório de Imagens</h3><p>Avatar + produto pronto para vídeo.</p></div>
+  <div class="card" onclick="openModule('scripts')">🔥 <h3>Impulso Viral</h3><p>Roteiros em partes de 8s.</p></div>
+  <div class="card" onclick="openModule('studio')">🎞️ <h3>Estúdio PRO</h3><p>Prompt final para Flow.</p></div>
+  <div class="card" onclick="openModule('store')">🛒 <h3>Tienda</h3><p>Em breve.</p></div>
+  <div class="card" onclick="openModule('academy')">🎓 <h3>Academia</h3><p>Em breve.</p></div>
+  <div class="card" onclick="openModule('avatar')">🎨 <h3>Criador de Avatar</h3><p>Avatares ultra realistas.</p></div>
+</section>
 
-</body>
-</html>
+<section class="panel">
+  <button onclick="openModule('radar')">📈 Radar</button>
+  <button onclick="openModule('images')">🖼️ Imagens</button>
+  <button onclick="openModule('scripts')">🔥 Roteiros</button>
+  <button onclick="openModule('studio')">🎞️ Estúdio</button>
+  <button onclick="openModule('avatar')">🎨 Avatar</button>
+</section>
+
+<!-- RADAR -->
+<section
