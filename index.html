@@ -1,9 +1,66 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-<title>Prompt Creator</title>
+  <meta charset="UTF-8">
+  <title>Náguayaba Prompts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f0f0f;
+      color: white;
+      padding: 20px;
+    }
+    h1 {
+      color: #ff0050;
+    }
+    textarea {
+      width: 100%;
+      height: 150px;
+      margin-top: 10px;
+      border-radius: 10px;
+      padding: 10px;
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px;
+      background: #ff0050;
+      border: none;
+      color: white;
+      border-radius: 10px;
+      width: 100%;
+    }
+  </style>
 </head>
+
 <body>
-<h1>Funciona 🔥</h1>
+
+<h1>🔥 Generador de Prompts</h1>
+
+<label>Tipo de imagen:</label>
+<select id="tipo">
+  <option>Selfie</option>
+  <option>De frente</option>
+  <option>Sosteniendo producto</option>
+</select>
+
+<label>Producto:</label>
+<input type="text" id="producto" placeholder="Ej: Perfume Barbarius">
+
+<button onclick="generar()">Generar Prompt</button>
+
+<textarea id="resultado"></textarea>
+
+<script>
+function generar() {
+  let tipo = document.getElementById("tipo").value;
+  let producto = document.getElementById("producto").value;
+
+  let prompt = `Ultra realistic ${tipo} style, influencer holding ${producto}, cinematic lighting, 4K, natural skin, high detail, TikTok style, viral product video`;
+
+  document.getElementById("resultado").value = prompt;
+}
+</script>
+
 </body>
 </html>
