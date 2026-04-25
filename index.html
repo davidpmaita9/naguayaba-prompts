@@ -381,59 +381,384 @@ function gerarRoteiro(){
 
   document.getElementById("roteiroResultado").innerText =
 `🔥 3 ROTEIROS PARA FLOW VEO 3
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ná Guayaba Creator IA</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+body{background:#07070a;color:white}.container{width:94%;max-width:1100px;margin:auto}
+header{background:#0d0d13;border-bottom:1px solid #222;padding:16px;position:sticky;top:0;z-index:9}
+.logo{font-weight:900;color:#ff2b62;font-size:20px}
+.hero{padding:34px 0}h1{font-size:34px;margin:12px 0}p{color:#aaa;line-height:1.5}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;margin:18px 0}
+.card,.panel,.item{background:#12121a;border:1px solid #242432;border-radius:18px;padding:18px;margin-bottom:18px}
+.card{cursor:pointer}.card:hover{border-color:#ff2b62}
+button{background:#ff2b62;color:white;border:none;border-radius:22px;padding:11px 15px;font-weight:bold;margin:6px 4px;cursor:pointer}
+button.dark{background:#252532}button.red{background:#7b1b2e}
+input,select,textarea{width:100%;background:#07070a;color:white;border:1px solid #333;border-radius:12px;padding:12px;margin:8px 0}
+textarea{min-height:120px}.module{display:none}.module.active{display:block}
+.out{background:#030303;border:1px solid #333;border-radius:14px;padding:15px;white-space:pre-wrap;min-height:160px;margin-top:12px;overflow:auto}
+.preview{width:130px;height:130px;object-fit:cover;border-radius:14px;border:1px solid #333;margin:8px 0;display:none}
+.small{font-size:13px;color:#bbb}.soon{text-align:center;padding:42px;border:1px dashed #444;border-radius:18px}
+.nav{background:#12121a;border:1px solid #242432;border-radius:18px;padding:14px;margin-bottom:18px}
+</style>
+</head>
+<body>
+
+<header><div class="container"><div class="logo">🔥 Ná Guayaba Creator IA</div></div></header>
+
+<div class="container">
+<section class="hero">
+<p>⚡ Plataforma para TikTok Shop Brasil + Flow VEO 3</p>
+<h1>Crie produtos, imagens, roteiros e prompts que vendem</h1>
+<p>Ferramenta editável para criar conteúdo realista, seguro e pronto para vídeos de venda.</p>
+</section>
+
+<section class="grid">
+<div class="card" onclick="openModule('radar')">📈 <h3>Radar de Produtos</h3><p>Análise tipo Kalodata.</p></div>
+<div class="card" onclick="openModule('images')">🖼️ <h3>Laboratório de Imagens</h3><p>Avatar + produto pronto para vídeo.</p></div>
+<div class="card" onclick="openModule('scripts')">🔥 <h3>Impulso Viral</h3><p>Roteiros em partes de 8s.</p></div>
+<div class="card" onclick="openModule('studio')">🎞️ <h3>Estúdio PRO</h3><p>Prompt final para Flow.</p></div>
+<div class="card" onclick="openModule('store')">🛒 <h3>Tienda</h3><p>Em breve.</p></div>
+<div class="card" onclick="openModule('academy')">🎓 <h3>Academia</h3><p>Em breve.</p></div>
+<div class="card" onclick="openModule('avatar')">🎨 <h3>Criador de Avatar</h3><p>Avatares ultra realistas.</p></div>
+</section>
+
+<section class="nav">
+<button onclick="openModule('radar')">📈 Radar</button>
+<button onclick="openModule('images')">🖼️ Imagens</button>
+<button onclick="openModule('scripts')">🔥 Roteiros</button>
+<button onclick="openModule('studio')">🎞️ Estúdio</button>
+<button onclick="openModule('avatar')">🎨 Avatar</button>
+</section>
+
+<section id="radar" class="module active panel">
+<h2>📈 Radar de Produtos</h2>
+<p>Cadastre produtos com imagem, nome e descrição para o radar analisar melhor.</p>
+
+<h3>Adicionar Produto</h3>
+<input type="file" id="pImagem" accept="image/*" onchange="previewFile(event,'pPreview')">
+<img id="pPreview" class="preview">
+<input id="pNome" placeholder="Nome do produto">
+<textarea id="pDescricao" placeholder="Descrição completa do produto"></textarea>
+<input id="pCategoria" placeholder="Categoria">
+<input id="pComissao" placeholder="Comissão">
+<input id="pDados" placeholder="Dados: alta procura, vendido, tendência, viral...">
+<input id="pLink" placeholder="Link de afiliado">
+<button onclick="addProduto()">Salvar Produto</button>
+
+<h3>Produtos cadastrados</h3>
+<div id="listaProdutos"></div>
+<div id="radarResultado" class="out">Clique em analisar para ver o radar.</div>
+</section>
+
+<section id="images" class="module panel">
+<h2>🖼️ Laboratório de Imagens</h2>
+<p>Crie uma imagem final: pessoa realista + produto integrado, pronta para virar vídeo.</p>
+
+<label>Produto do radar</label>
+<select id="imgProduto"></select>
+
+<label>Ou suba imagem do produto manual</label>
+<input type="file" id="imgProdutoManual" accept="image/*" onchange="previewFile(event,'imgProdutoPreview')">
+<img id="imgProdutoPreview" class="preview">
+
+<label>Avatar salvo</label>
+<select id="imgAvatar"></select>
+
+<label>Ou suba imagem do avatar manual</label>
+<input type="file" id="imgAvatarManual" accept="image/*" onchange="previewFile(event,'imgAvatarPreview')">
+<img id="imgAvatarPreview" class="preview">
+
+<label>Tipo de imagem</label>
+<select id="tipoImagem">
+<option>Selfie</option>
+<option>De frente</option>
+<option>Segurando o produto com as mãos</option>
+</select>
+
+<label>Ambiente da cena</label>
+<select id="ambiente">
+<option>Cozinha</option>
+<option>Sala / Casa</option>
+<option>Rua / Exterior</option>
+<option>Carro</option>
+</select>
+
+<label>Realismo</label>
+<select id="realismo">
+<option>Ultra realista</option>
+<option>UGC TikTok realista</option>
+<option>Cinemático realista</option>
+<option>Comercial premium</option>
+</select>
+
+<button onclick="gerarPromptImagem()">Criar Prompt de Imagem + Vídeo</button>
+<div id="imagemResultado" class="out"></div>
+<button onclick="copiar('imagemResultado')">Copiar</button>
+<button onclick="abrirFlow()">Abrir Flow</button>
+</section>
+
+<section id="scripts" class="module panel">
+<h2>🔥 Impulso Viral</h2>
+<p>Roteiros em português Brasil, sem preço e sem promessas exageradas.</p>
+
+<label>Subir imagem do produto</label>
+<input type="file" id="sImagem" accept="image/*" onchange="previewFile(event,'sPreview')">
+<img id="sPreview" class="preview">
+
+<textarea id="sDescricao" placeholder="Descrição simples do produto"></textarea>
+<input id="sPublico" placeholder="Público alvo">
+
+<label>Estilo</label>
+<select id="sEstilo">
+<option>Viral direto</option>
+<option>Curiosidade</option>
+<option>Review natural</option>
+<option>Storytelling</option>
+<option>UGC realista</option>
+</select>
+
+<button onclick="gerarRoteiro()">Criar 3 Roteiros</button>
+<div id="roteiroResultado" class="out"></div>
+<button onclick="copiar('roteiroResultado')">Copiar</button>
+<button onclick="abrirFlow()">Abrir Flow</button>
+</section>
+
+<section id="studio" class="module panel">
+<h2>🎞️ Estúdio PRO</h2>
+<textarea id="studioBase" placeholder="Cole aqui o prompt da imagem ou roteiro"></textarea>
+<select id="qualidade"><option>Máxima qualidade realista</option><option>4K vertical</option><option>Full HD 1080x1920</option></select>
+<select id="movimento"><option>Movimento natural de celular</option><option>Câmera frontal estável</option><option>Zoom leve no produto</option><option>Estilo TikTok UGC</option></select>
+<button onclick="gerarStudio()">Criar Prompt Final</button>
+<div id="studioResultado" class="out"></div>
+<button onclick="copiar('studioResultado')">Copiar</button>
+<button onclick="abrirFlow()">Abrir Flow</button>
+</section>
+
+<section id="store" class="module panel"><div class="soon"><h2>🛒 Tienda de Laboratório</h2><p>Em breve… estamos preparando algo grande 🚀</p></div></section>
+<section id="academy" class="module panel"><div class="soon"><h2>🎓 Academia de Laboratório</h2><p>Em breve você terá aulas para usar cada função.</p></div></section>
+
+<section id="avatar" class="module panel">
+<h2>🎨 Criador de Avatar Ultra Realista</h2>
+<input id="aNome" placeholder="Nome do avatar">
+<select id="aGenero"><option>Mulher</option><option>Homem</option><option>Neutro</option></select>
+<input id="aIdade" placeholder="Idade aproximada">
+
+<label>Subir imagem de referência do avatar</label>
+<input type="file" id="aReferencia" accept="image/*" onchange="previewFile(event,'aPreview')">
+<img id="aPreview" class="preview">
+
+<select id="aEstilo"><option>UGC TikTok realista</option><option>Influencer realista</option><option>Cliente satisfeito</option><option>Vendedor natural</option></select>
+<button onclick="gerarAvatar()">Gerar Prompt de Avatar</button>
+<div id="avatarResultado" class="out"></div>
+<button onclick="copiar('avatarResultado')">Copiar</button>
+<button onclick="abrirFlow()">Abrir Flow</button>
+
+<input id="avatarUrl" placeholder="Cole URL da imagem gerada do avatar">
+<button onclick="salvarAvatar()">Salvar Avatar</button>
+<h3>Avatares salvos</h3>
+<div id="listaAvatares"></div>
+</section>
+</div>
+
+<script>
+const FLOW="https://labs.google/fx/tools/flow";
+let produtos=JSON.parse(localStorage.getItem("produtosNG"))||[];
+let avatares=JSON.parse(localStorage.getItem("avataresNG"))||[
+{nome:"Camila",desc:"mulher jovem, UGC realista"},
+{nome:"João",desc:"homem jovem, vendedor natural"}
+];
+let imagensTemp={};
+
+function openModule(id){
+document.querySelectorAll(".module").forEach(m=>m.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+window.scrollTo({top:300,behavior:"smooth"});
+}
+
+function previewFile(event,id){
+const file=event.target.files[0]; if(!file)return;
+const reader=new FileReader();
+reader.onload=function(e){
+document.getElementById(id).src=e.target.result;
+document.getElementById(id).style.display="block";
+imagensTemp[id]=e.target.result;
+};
+reader.readAsDataURL(file);
+}
+
+function salvar(){
+localStorage.setItem("produtosNG",JSON.stringify(produtos));
+localStorage.setItem("avataresNG",JSON.stringify(avatares));
+render();
+}
+
+function addProduto(){
+const produto={
+imagem:imagensTemp.pPreview||"",
+nome:document.getElementById("pNome").value||"Produto sem nome",
+descricao:document.getElementById("pDescricao").value||"Sem descrição",
+categoria:document.getElementById("pCategoria").value||"Categoria não informada",
+comissao:document.getElementById("pComissao").value||"Não informado",
+dados:document.getElementById("pDados").value||"Sem dados",
+link:document.getElementById("pLink").value||"#"
+};
+produtos.push(produto); salvar(); alert("Produto salvo!");
+}
+
+function render(){
+document.getElementById("listaProdutos").innerHTML=produtos.map((p,i)=>`
+<div class="item">
+${p.imagem?`<img src="${p.imagem}" style="width:100%;max-width:180px;border-radius:14px">`:""}
+<b>${p.nome}</b><br><span class="small">${p.descricao}</span><br>
+<button onclick="analisarProduto(${i})">Analisar</button>
+<button onclick="enviarParaRoteiro(${i})">Criar roteiro</button>
+<button onclick="window.open('${p.link}','_blank')">Afiliar</button>
+<button class="red" onclick="removerProduto(${i})">Excluir</button>
+</div>`).join("");
+
+document.getElementById("imgProduto").innerHTML=produtos.map((p,i)=>`<option value="${i}">${p.nome}</option>`).join("");
+document.getElementById("imgAvatar").innerHTML=avatares.map((a,i)=>`<option value="${i}">${a.nome}</option>`).join("");
+document.getElementById("listaAvatares").innerHTML=avatares.map((a,i)=>`
+<div class="item"><b>${a.nome}</b><br><span class="small">${a.desc}</span><br>
+<button class="red" onclick="removerAvatar(${i})">Excluir</button></div>`).join("");
+}
+
+function analisarProduto(i){
+const p=produtos[i];
+const score=p.dados.toLowerCase().includes("alta")||p.dados.toLowerCase().includes("viral")?88:68;
+document.getElementById("radarResultado").innerText=
+`📊 ANÁLISE DO PRODUTO
+
+Produto: ${p.nome}
+Descrição: ${p.descricao}
+Categoria: ${p.categoria}
+Comissão: ${p.comissao}
+Dados: ${p.dados}
+
+Chance de venda: ${score}%
+
+Por que pode vender:
+Esse produto pode funcionar porque é visual, fácil de mostrar em vídeo curto e permite recomendação natural.
+
+Público ideal:
+Pessoas que gostam de achadinhos, produtos práticos e recomendações rápidas.
+
+Ângulos:
+1. Review natural.
+2. Curiosidade.
+3. Demonstração rápida.
+4. Produto útil no dia a dia.
+
+Hook:
+Ná guayaba... eu não tava esperando isso desse produto.
+
+CTA:
+clica no carrinho laranja que aparece aqui em baixo.`;
+}
+
+function enviarParaRoteiro(i){
+openModule("scripts");
+document.getElementById("sDescricao").value=produtos[i].descricao;
+}
+
+function removerProduto(i){produtos.splice(i,1);salvar();}
+
+function gerarPromptImagem(){
+let pi=document.getElementById("imgProduto").value;
+let ai=document.getElementById("imgAvatar").value;
+let produto=imagensTemp.imgProdutoPreview?"imagem do produto enviada manualmente":(produtos[pi]?.nome+" - "+produtos[pi]?.descricao||"produto");
+let avatar=imagensTemp.imgAvatarPreview?"imagem do avatar enviada manualmente":(avatares[ai]?.desc||"pessoa realista");
+let tipo=document.getElementById("tipoImagem").value;
+let ambiente=document.getElementById("ambiente").value;
+let realismo=document.getElementById("realismo").value;
+
+document.getElementById("imagemResultado").innerText=
+`🖼️ PROMPT PARA IMAGEM FINAL
+
+Create one final ultra realistic TikTok Shop UGC image.
+
+Person/avatar:
+${avatar}
+
+Product:
+${produto}
+
+Scene type:
+${tipo}
+
+Environment:
+${ambiente}
+
+Realism:
+${realismo}
+
+The person must look like a real human, natural skin texture, realistic expression, clear eyes, natural lighting, clean background, vertical 9:16, product integrated naturally, product clearly visible, no blur, no watermark, no text, no extra fingers, no deformed hands, no fake AI look.
+
+🎬 PROMPT PARA VÍDEO FLOW VEO 3
+
+Use this generated image as the first frame. Create a realistic vertical 9:16 TikTok Shop UGC video. The person naturally presents the product in a ${ambiente} environment, moves hands realistically, keeps the product visible, natural facial expression, smooth motion, realistic lighting, trustworthy recommendation style, no exaggerated claims, no aggressive selling.`;
+}
+
+function gerarRoteiro(){
+let desc=document.getElementById("sDescricao").value||"produto interessante e útil";
+let publico=document.getElementById("sPublico").value||"quem gosta de achadinhos";
+
+document.getElementById("roteiroResultado").innerText=
+`🔥 3 ROTEIROS PARA FLOW VEO 3
 
 VERSÃO 1 — VIRAL DIRETO
-0-8s: Ná guayaba... eu não tava esperando isso desse ${p}.
-8-16s: Sabe quando você vê um produto simples, mas percebe que ele faz sentido?
-16-24s: Esse aqui chama atenção porque ${b}, sem complicar.
-24-30s: Se você quiser ver mais detalhes, clica no carrinho laranja que aparece aqui em baixo.
+0-8s: Ná guayaba... eu não tava esperando isso desse produto.
+8-16s: Sabe quando você vê algo simples, mas percebe que pode fazer sentido?
+16-24s: Esse aqui chama atenção porque ${desc}.
+24-30s: Se quiser ver mais detalhes, clica no carrinho laranja que aparece aqui em baixo.
 
 VERSÃO 2 — CURIOSIDADE
-0-8s: Ná guayaba... muita gente está olhando esse ${p} e agora eu entendi o motivo.
+0-8s: Ná guayaba... muita gente está olhando esse produto e agora eu entendi o motivo.
 8-16s: Ele tem aquele detalhe que só dá pra perceber quando você vê de perto.
 16-24s: Para ${publico}, isso pode ser muito útil no dia a dia.
 24-30s: Dá uma olhada com calma, clica no carrinho laranja que aparece aqui em baixo.
 
 VERSÃO 3 — REVIEW NATURAL
-0-8s: Ná guayaba... testei esse ${p} e vou falar de forma simples.
+0-8s: Ná guayaba... testei esse produto e vou falar de forma simples.
 8-16s: A primeira coisa que gostei foi que ele parece prático e fácil de usar.
-16-24s: O ponto principal é que ${b}, sem precisar exagerar.
+16-24s: O ponto principal é: ${desc}.
 24-30s: Se fez sentido pra você, clica no carrinho laranja que aparece aqui em baixo.`;
 }
 
 function gerarStudio(){
-  const base = document.getElementById("studioBase").value;
-  const q = document.getElementById("qualidade").value;
-  const m = document.getElementById("movimento").value;
-
-  document.getElementById("studioResultado").innerText =
+let base=document.getElementById("studioBase").value;
+let q=document.getElementById("qualidade").value;
+let m=document.getElementById("movimento").value;
+document.getElementById("studioResultado").innerText=
 `🎞️ PROMPT FINAL PARA FLOW VEO 3
 
 ${base}
 
-Quality:
-${q}
+Quality: ${q}
+Camera movement: ${m}
 
-Camera movement:
-${m}
-
-Create a vertical 9:16 ultra realistic TikTok Shop UGC video. Natural lighting, sharp focus, realistic human movement, product always visible, smooth motion, realistic skin texture, no blur, no watermark, no text overlay, no distorted hands, no low quality footage. Make it feel like a natural product recommendation from a real person.`;
+Create a vertical 9:16 ultra realistic TikTok Shop UGC video. Natural lighting, sharp focus, realistic human movement, product always visible, smooth motion, realistic skin texture, no blur, no watermark, no text overlay, no distorted hands, no low quality footage.`;
 }
 
 function gerarAvatar(){
-  const nome = document.getElementById("aNome").value || "Avatar";
-  const genero = document.getElementById("aGenero").value;
-  const idade = document.getElementById("aIdade").value || "25 anos";
-  const aparencia = document.getElementById("aAparencia").value || "aparência natural";
-  const estilo = document.getElementById("aEstilo").value;
+let nome=document.getElementById("aNome").value||"Avatar";
+let genero=document.getElementById("aGenero").value;
+let idade=document.getElementById("aIdade").value||"25 anos";
+let estilo=document.getElementById("aEstilo").value;
+let ref=imagensTemp.aPreview?"Use the uploaded reference image as visual direction.":"No external reference image.";
 
-  document.getElementById("avatarResultado").innerText =
+document.getElementById("avatarResultado").innerText=
 `🎨 PROMPT PARA AVATAR ULTRA REALISTA
 
 Create an ultra realistic ${genero} Brazilian TikTok Shop creator named ${nome}, approximately ${idade}.
 
-Appearance:
-${aparencia}
+Reference:
+${ref}
 
 Style:
 ${estilo}
@@ -445,30 +770,16 @@ cartoon, anime, plastic skin, low quality, blur, extra fingers, deformed face, d
 }
 
 function salvarAvatar(){
-  const nome = document.getElementById("aNome").value || "Novo avatar";
-  const desc = document.getElementById("aAparencia").value || "Avatar realista UGC";
-
-  avatares.push({nome, desc});
-  salvar();
-  alert("Avatar salvo!");
+let nome=document.getElementById("aNome").value||"Novo avatar";
+let desc=imagensTemp.aPreview?"Avatar com imagem de referência":"Avatar realista UGC";
+avatares.push({nome,desc});
+salvar(); alert("Avatar salvo!");
 }
 
-function removerAvatar(i){
-  avatares.splice(i,1);
-  salvar();
-}
-
-function copiar(id){
-  navigator.clipboard.writeText(document.getElementById(id).innerText);
-  alert("Copiado!");
-}
-
-function abrirFlow(){
-  window.open(FLOW, "_blank");
-}
-
+function removerAvatar(i){avatares.splice(i,1);salvar();}
+function copiar(id){navigator.clipboard.writeText(document.getElementById(id).innerText);alert("Copiado!");}
+function abrirFlow(){window.open(FLOW,"_blank");}
 render();
 </script>
-
 </body>
 </html>
